@@ -18,12 +18,12 @@ FetchContent_MakeAvailable(googletest)
 set(DEBUG_FLAGS -Wall -Werror -Wpedantic -Wextra -g)
 
 # Main function
-add_executable(main main.cpp)
+add_executable(main main.cpp SimpleClass.cpp)
 target_compile_options(main PUBLIC ${DEBUG_FLAGS})
 
 # tests
 enable_testing()
-add_executable(unitTests ut.cpp)
+add_executable(unitTests ut.cpp SimpleClass.cpp)
 target_compile_options(unitTests PUBLIC ${DEBUG_FLAGS})
 target_link_libraries(unitTests gtest_main)
 include(GoogleTest)

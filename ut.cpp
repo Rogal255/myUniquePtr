@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "SimpleClass.hpp"
 #include "unique_ptr.hpp"
 
 TEST(SampleTest, Trivial) {

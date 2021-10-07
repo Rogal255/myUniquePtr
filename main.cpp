@@ -1,29 +1,16 @@
-#include <iostream>
 #include <utility>
+#include "SimpleClass.hpp"
 #include "unique_ptr.hpp"
 
-class SimpleClass {
-public:
-    SimpleClass() {
-        std::cout << "SimpleClass c'tor\n";
-    }
-    ~SimpleClass() {
-        std::cout << "SimpleClass d'tor\n";
-    }
-
-    void simpleMethod() {
-        std::cout << "SimpleMethod\n";
-    }
-};
-
 int main() {
-    pr::unique_ptr up{new SimpleClass};
-    up->simpleMethod();
-    (*up).simpleMethod();
-    // pr::unique_ptr new_instance = up;
-    // pr::unique_ptr new_instance{up};
-    pr::unique_ptr<SimpleClass> new_instance{nullptr};
-    new_instance = std::move(up);
-    pr::unique_ptr even_newer_instance{std::move(new_instance)};
+    pr::unique_ptr ptr1{new SimpleClass};
+    ptr1->simpleMethod();
+    (*ptr1).simpleMethod();
+    // pr::unique_ptr ptr2{ptr1};
+    // pr::unique_ptr<SimpleClass> ptr3{nullptr};
+    // pr::unique_ptr ptr3 = ptr2;
+    pr::unique_ptr ptr2{std::move(ptr1)};
+    pr::unique_ptr<SimpleClass> ptr3{nullptr};
+    ptr3 = std::move(ptr2);
     return 0;
 }

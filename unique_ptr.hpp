@@ -7,10 +7,10 @@ namespace pr {
 template <class T>
 class unique_ptr {
 public:
-    unique_ptr(T* ptr)
+    unique_ptr(T* ptr) noexcept
         : ptr_(ptr) {}
 
-    ~unique_ptr() {
+    ~unique_ptr() noexcept {
         delete ptr_;
         ptr_ = nullptr;
     }
