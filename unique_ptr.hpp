@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 namespace pr {
 
 template <class T>
@@ -13,8 +15,19 @@ public:
         ptr_ = nullptr;
     }
 
-    unique_ptr(const unique_ptr& other) = delete;
+    unique_ptr& operator=(unique_ptr&& other) noexcept {
+        this->ptr_ = other.realase();
+        std::cout << "unique ptr move operator=\n";
+        return *this;
+    }
+
+    unique_ptr(unique_ptr&& other) noexcept {
+        this->ptr_ = other.realase();
+        std::cout << "unique ptr move c'tor\n";
+    }
+
     unique_ptr& operator=(const unique_ptr& other) = delete;
+    unique_ptr(const unique_ptr& other) = delete;
 
     T* operator->() const noexcept {
         return this->get();
@@ -24,17 +37,17 @@ public:
         return *this->get();
     }
 
-    T* get() const  {
+    T* get() const noexcept {
         return ptr_;
     }
 
-    T* realase() {
+    T* realase() noexcept {
         T* temporary = ptr_;
         ptr_ = nullptr;
         return temporary;
     }
 
-    void reset(T* other) {
+    void reset(T* other) noexcept {
         delete ptr_;
         ptr_ = other;
     }
