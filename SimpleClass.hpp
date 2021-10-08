@@ -5,4 +5,5 @@ public:
     SimpleClass();
     ~SimpleClass();
     void simpleMethod();
+    int callMe(int num);
 };

@@ -1,13 +1,13 @@
 #include "SimpleClass.hpp"
 #include <iostream>
 
-SimpleClass::SimpleClass() {
-    std::cout << "SimpleClass c'tor\n";
-}
-SimpleClass::~SimpleClass() {
-    std::cout << "SimpleClass d'tor\n";
-}
+SimpleClass::SimpleClass() {}
+SimpleClass::~SimpleClass() {}
 
 void SimpleClass::simpleMethod() {
     std::cout << "SimpleMethod\n";
+}
+
+int SimpleClass::callMe(int num) {
+    return num;
 }
