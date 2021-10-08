@@ -71,3 +71,11 @@ TEST(UniquePtrTest, ResetTest) {
     ptr3.reset(new int(val));
     ASSERT_EQ(*ptr3.get(), val);
 }
+
+TEST(UniquePtrTest, BoolOperatorTest) {
+    pr::unique_ptr ptr1 {new SimpleClass};
+    ASSERT_TRUE(ptr1);
+
+    pr::unique_ptr<SimpleClass> ptr2 {nullptr};
+    ASSERT_FALSE(ptr2);
+}

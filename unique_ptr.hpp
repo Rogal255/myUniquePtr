@@ -33,6 +33,10 @@ public:
         return *this->get();
     }
 
+    explicit operator bool() const noexcept {
+        return (ptr_ ? true : false);
+    }
+
     T* get() const noexcept {
         return ptr_;
     }
